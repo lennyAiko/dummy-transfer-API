@@ -7,7 +7,7 @@
 
 module.exports = {
   attributes: {
-    uuid: {
+    id: {
       type: "string",
       unique: true,
       required: true,
@@ -26,11 +26,9 @@ module.exports = {
       type: "string",
       required: true,
       minLength: 8,
-    },
-
-    role: {
-      type: "string",
-      defaultsTo: "user",
-    },
+    }
+  },
+  customToJSON: function () {
+    return _.omit(this, ['password', 'createdAt', 'updatedAt']);
   },
 };

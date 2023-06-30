@@ -10,5 +10,6 @@
 
 module.exports.routes = {
   "POST /register": "user/register",
-  //   "POST /login": "user/login",
+  "POST /login": "user/login",
+  'GET /user': 'user/view'
 };
