@@ -12,5 +12,6 @@ module.exports.routes = {
   'POST /register': 'user/register',
   'POST /login': 'user/login',
   'GET /user': 'user/view',
-  'POST /refresh': 'user/refresh'
+  'POST /refresh': 'user/refresh',
+  'POST /transfer': 'TransferController.transferFunds',
 };

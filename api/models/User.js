@@ -13,34 +13,27 @@ module.exports = {
       required: true,
     },
     email: {
-      type: "string",
-      unique: true,
+      type: 'string',
       required: true,
-      isEmail: {
-        message: 'Please enter a valid email address',
-      },
-      minLength: {
-        minLength: 8,
-        message: 'Email address must be at least 8 characters long',
-      },
+      isEmail: true,
+      maxLength: 8,
+      example: 'example@example.com',
     },
+    
     name: {
-      type: "string",
-      unique: true,
+      type: 'string',
       required: true,
-      minLength: {
-        minLength: 8,
-        message: 'Name must be at least 8 characters long',
-      },
+      minLength: 8, // Set the minimum length as an integer
+      example: 'John Doe',
     },
+    
     password: {
-      type: "string",
+      type: 'string',
       required: true,
-      minLength: {
-        minLength: 8,
-        message: 'Password must be at least 8 characters long',
-      },
+      minLength: 8, // Set the minimum length as an integer
+      example: 'John Doe',
     },
+    
     wallet: {
       collection: 'wallet',
       via: 'user'
