@@ -16,6 +16,13 @@ module.exports = {
       type: "string",
       unique: true,
       required: true,
+      isEmail: {
+        message: 'Please enter a valid email address',
+      },
+      minLength: {
+        minLength: 8,
+        message: 'Email address must be at least 8 characters long',
+      },
     },
     name: {
       type: "string",
