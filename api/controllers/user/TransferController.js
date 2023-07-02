@@ -5,7 +5,7 @@ module.exports = {
         const { recipientEmail, amount } = req.body;
   
         // Retrieve sender wallet record
-        const senderWallet = await Wallet.findOne({ id: req.user.wallet.id });
+        const senderWallet = await Wallet.findOne({ user: req.user.id });
   
         // Check if sender wallet exists
         if (!senderWallet) {
