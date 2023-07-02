@@ -9,7 +9,7 @@ module.exports = {
   
         // Check if sender wallet exists
         if (!senderWallet) {
-          return res.badRequest('Sender wallet not found');
+          return res.status(400).send('Sender wallet not found');
         }
   
         // Retrieve recipient user record based on the email
@@ -17,7 +17,7 @@ module.exports = {
   
         // Check if recipient user exists
         if (!recipientUser) {
-          return res.badRequest('Recipient user not found');
+          return res.status(400).send('Recipient user not found');
         }
   
         // Retrieve recipient wallet record
@@ -25,7 +25,7 @@ module.exports = {
   
         // Check if sender has sufficient balance
         if (senderWallet.balance < amount) {
-          return res.badRequest('Insufficient balance');
+          return res.status(400).send('Insufficient balance');
         }
   
         // Perform the fund transfer
@@ -38,10 +38,10 @@ module.exports = {
           Wallet.updateOne({ id: recipientWallet.id }).set(recipientWallet),
         ]);
   
-        return res.ok('Funds transferred successfully');
+        return res.status(200).send('Funds transferred successfully');
       } catch (error) {
         console.error(error);
-        return res.serverError('An error occurred while transferring funds');
+        return res.status(500).send('An error occurred while transferring funds');
       }
     },
   };
