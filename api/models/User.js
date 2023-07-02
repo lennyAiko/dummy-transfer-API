@@ -28,11 +28,18 @@ module.exports = {
       type: "string",
       unique: true,
       required: true,
+      minLength: {
+        minLength: 8,
+        message: 'Name must be at least 8 characters long',
+      },
     },
     password: {
       type: "string",
       required: true,
-      minLength: 8,
+      minLength: {
+        minLength: 8,
+        message: 'Password must be at least 8 characters long',
+      },
     },
     wallet: {
       collection: 'wallet',
