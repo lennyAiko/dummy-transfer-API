@@ -24,7 +24,7 @@ module.exports = {
     },
   },
   fn: async function (inputs, exits) {
-    const userRecord = await User.findOne({ email: inputs.email });
+    const userRecord = await User.findOne({ email: inputs.email }).populate('wallet');
     if (!userRecord) {
       return exits.badCombo({
         error: "Invalid credentials",
@@ -34,32 +34,28 @@ module.exports = {
     if (!passwordCheck) {
       return exits.badCombo({ error: "Password mismatch" });
     }
-    const sign_payload = {
+    const signPayload = {
       id: userRecord.id,
       name: userRecord.name,
       email: userRecord.email,
     };
-    const token = jwToken.sign({ user: sign_payload, issuer: "The Sailors" });
-    const refreshToken = jwToken.sign({
-      user: sign_payload,
-      issuer: "The Sailors",
-    });
+    const token = jwToken.sign({ user: signPayload, issuer: "The Sailors" });
 
-    const refreshTokenExpiration = 2 * 24 * 60 * 60 * 1000; // Refresh token expiration time in milliseconds (e.g., 2 days)
-    const refreshToExpire = Date.now() + refreshTokenExpiration; // Calculate the refresh token expiration time
+    const refreshToExpire = Date.now() + (2 * 24 * 60 * 60 * 1000); // Calculate the refresh token expiration time
 
     let userTokenRecord = await TokenStore.findOne({ email: inputs.email });
 
     if (userTokenRecord) {
       await TokenStore.updateOne({ email: inputs.email }).set({
         token: token.access,
-        refreshToken: refreshToken.refresh,
+        refreshToken: token.refresh,
+        toExpire: refreshToExpire
       });
     } else {
       await TokenStore.create({
         id: await sails.helpers.uuidGenerator(),
         token: token.access,
-        refreshToken: refreshToken.refresh,
+        refreshToken: token.refresh,
         email: userRecord.email,
         toExpire: refreshToExpire, // Set the refresh token expiration time
       });
@@ -69,8 +65,8 @@ module.exports = {
       message: userTokenRecord
         ? `${userRecord.email} already has an active token and refresh token, and will be overwritten`
         : `${userRecord.email} has logged in`,
-      token,
-      refreshToken,
+      access: token.access,
+      refresh: token.refresh,
       userRecord,
     });
   },

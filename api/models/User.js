@@ -26,6 +26,10 @@ module.exports = {
       type: "string",
       required: true,
       minLength: 8,
+    },
+    wallet: {
+      collection: 'wallet',
+      via: 'user'
     }
   },
   customToJSON: function () {

@@ -12,5 +12,12 @@ module.exports = {
   },
   'verify': function (token, cb) {
     return jwt.verify(token, access_token_secret, {}, cb)
-  }
+  },
+  'refresh': function (payload) {
+    const access = jwt.sign(payload, access_token_secret, { expiresIn: "1h" });
+    return access;
+  },
+  'verifyRefresh': function (token, cb) {
+    return jwt.verify(token, refresh_token_secret, {}, cb)
+  },
 }
