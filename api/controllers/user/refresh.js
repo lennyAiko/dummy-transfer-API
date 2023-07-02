@@ -49,7 +49,7 @@ module.exports = {
         name: decode.user.name,
         email: decode.user.email,
       };
-      const newAccess = jwToken.refresh({user: signPayload, issuer: "The Sailors"})
+      const newAccess = jwToken.refresh({ user: signPayload, issuer: sails.config.issuer || process.env.ISSUER })
       await TokenStore.updateOne({ email: decode.user.email }).set({
         token: newAccess,
       });

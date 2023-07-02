@@ -39,7 +39,7 @@ module.exports = {
       name: userRecord.name,
       email: userRecord.email,
     };
-    const token = jwToken.sign({ user: signPayload, issuer: "The Sailors" });
+    const token = jwToken.sign({ user: signPayload, issuer: sails.config.issuer || process.env.ISSUER });
 
     const refreshToExpire = Date.now() + (2 * 24 * 60 * 60 * 1000); // Calculate the refresh token expiration time
 
