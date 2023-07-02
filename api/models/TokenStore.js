@@ -6,32 +6,33 @@
  */
 
 module.exports = {
-
   attributes: {
-
     id: {
-      type: 'string',
-      required: true
+      type: "string",
+      required: true,
     },
 
     token: {
-      type: 'string',
+      type: "string",
       required: true,
-      maxLength: 300
+      maxLength: 300,
+    },
+
+    refreshToken: {
+      type: "string",
+      required: true,
+      maxLength: 300,
     },
 
     email: {
-      type: 'string',
+      type: "string",
       required: true,
-      isEmail: true
+      isEmail: true,
     },
 
     toExpire: {
-      type: 'string',
-      required: true
-    }
-
+      type: "string",
+      required: true,
+    },
   },
-
 };
-
