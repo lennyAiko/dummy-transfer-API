@@ -24,7 +24,7 @@ module.exports = {
     },
   },
   fn: async function (inputs, exits) {
-    const userRecord = await User.findOne({ email: inputs.email }).populate('wallet');
+    const userRecord = await User.findOne({ email: inputs.email.toLowerCase() }).populate('wallet');
     if (!userRecord) {
       return exits.badCombo({
         error: "Invalid credentials",

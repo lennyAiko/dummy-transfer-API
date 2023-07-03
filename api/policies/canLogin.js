@@ -3,7 +3,7 @@ module.exports = async function (req, res, proceed) {
   const {email} = req.allParams();
   
   try {
-    let userRecord = await User.findOne({ email: email });
+    let userRecord = await User.findOne({ email: email.toLowerCase() });
     if (!userRecord) {
       res.status(404).json({
         error: `${email} does not exist`
