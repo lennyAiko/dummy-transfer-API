@@ -22,16 +22,12 @@ module.exports = {
       required: true,
       maxLength: 300,
     },
-
     email: {
       type: 'string',
       required: true,
-      isEmail: true,
-      minLength: 8,
+      minLength: 5,
       example: 'example@example.com',
     },
-    
-   
     toExpire: {
       type: "string",
       required: true,
