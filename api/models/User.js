@@ -19,21 +19,18 @@ module.exports = {
       maxLength: 8,
       example: 'example@example.com',
     },
-    
     name: {
       type: 'string',
       required: true,
-      minLength: 8, // Set the minimum length as an integer
+      minLength: 8,
       example: 'John Doe',
     },
-    
     password: {
       type: 'string',
       required: true,
-      minLength: 8, // Set the minimum length as an integer
+      minLength: 8,
       example: 'John Doe',
     },
-    
     wallet: {
       collection: 'wallet',
       via: 'user'
@@ -41,5 +38,21 @@ module.exports = {
   },
   customToJSON: function () {
     return _.omit(this, ['password', 'createdAt', 'updatedAt']);
+  },
+  customMessages: {
+    // Custom error messages
+    email: {
+      required: 'Email is required',
+      isEmail: 'Invalid email format',
+      maxLength: 'Email must not exceed 8 characters',
+    },
+    name: {
+      required: 'Name is required',
+      minLength: 'Name must be at least 8 characters long',
+    },
+    password: {
+      required: 'Password is required',
+      minLength: 'Password must be at least 8 characters long',
+    },
   },
 };
