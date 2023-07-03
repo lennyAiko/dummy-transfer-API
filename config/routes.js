@@ -9,9 +9,13 @@
  */
 
 module.exports.routes = {
+  // AUTH
   'POST /register': 'user/register',
   'POST /login': 'user/login',
-  'GET /user': 'user/view',
   'POST /refresh': 'user/refresh',
-  'POST /transfer': 'TransferController.transferFunds',
+  // USER UPDATE
+  'GET /user': 'user/view',
+  'GET /user/wallet': 'wallet/view',
+  // TRANSFER
+  'POST /transfer': 'transfer/initiate',
 };

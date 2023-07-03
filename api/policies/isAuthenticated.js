@@ -28,7 +28,7 @@ module.exports = async function (req, res, proceed) {
             const userTokenRecord = await TokenStore.findOne({email: decode.user.email})
             if (userTokenRecord) {
                 if (token === userTokenRecord.token) {
-                    let userRecord = await User.findOne({ email: decode.user.email }).populate('wallet')
+                    let userRecord = await User.findOne({ id: decode.user.id }).populate('wallet')
                     req.profile = {data: userRecord, issuer: decode.issuer}
                 } else {
                     return res.status(401).json('Invalid token')

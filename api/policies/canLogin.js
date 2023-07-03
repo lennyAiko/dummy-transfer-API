@@ -5,7 +5,7 @@ module.exports = async function (req, res, proceed) {
   try {
     let userRecord = await User.findOne({ email: email });
     if (!userRecord) {
-      res.send(404).json({
+      res.status(404).json({
         error: `${email} does not exist`
       });
     } else {
