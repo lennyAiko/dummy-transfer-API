@@ -5,31 +5,29 @@
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
+
 module.exports = {
   attributes: {
     id: {
       type: "string",
       required: true,
     },
-
     token: {
       type: "string",
       required: true,
       maxLength: 300,
     },
-
     refreshToken: {
       type: "string",
       required: true,
       maxLength: 300,
     },
-
     email: {
-      type: "string",
+      type: 'string',
       required: true,
-      isEmail: true,
+      minLength: 5,
+      example: 'example@example.com',
     },
-
     toExpire: {
       type: "string",
       required: true,

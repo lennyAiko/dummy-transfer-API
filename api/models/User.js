@@ -13,19 +13,23 @@ module.exports = {
       required: true,
     },
     email: {
-      type: "string",
-      unique: true,
+      type: 'string',
       required: true,
+      isEmail: true,
+      minLength: 5,
+      example: 'example@example.com',
     },
     name: {
-      type: "string",
-      unique: true,
+      type: 'string',
       required: true,
+      minLength: 2,
+      example: 'John Doe',
     },
     password: {
-      type: "string",
+      type: 'string',
       required: true,
       minLength: 8,
+      example: 'password123',
     },
     wallet: {
       collection: 'wallet',
@@ -34,5 +38,5 @@ module.exports = {
   },
   customToJSON: function () {
     return _.omit(this, ['password', 'createdAt', 'updatedAt']);
-  },
+  }
 };
