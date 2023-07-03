@@ -5,7 +5,6 @@
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
-
 module.exports = {
   attributes: {
     id: {
@@ -23,10 +22,10 @@ module.exports = {
       maxLength: 300,
     },
     email: {
-      type: 'string',
+      type: "string",
       required: true,
       minLength: 5,
-      example: 'example@example.com',
+      example: "example@example.com",
     },
     toExpire: {
       type: "string",
