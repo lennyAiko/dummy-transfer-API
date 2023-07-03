@@ -22,16 +22,16 @@ module.exports = {
       required: true,
       maxLength: 300,
     },
+
     email: {
       type: 'string',
       required: true,
-      custom: function(value) {
-        // Custom validation logic for email
-        if (!value || typeof value !== 'string' || value.length > 8) {
-          throw new Error('Invalid email format'); // Custom error message for invalid email
-        }
-      },
+      isEmail: true,
+      minLength: 8,
+      example: 'example@example.com',
     },
+    
+   
     toExpire: {
       type: "string",
       required: true,

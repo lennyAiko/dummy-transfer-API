@@ -16,8 +16,7 @@ module.exports = {
       type: 'string',
       required: true,
       isEmail: true,
-      maxLength: 8,
-      example: 'example@example.com',
+      minLength: 8,
     },
     name: {
       type: 'string',
@@ -39,20 +38,5 @@ module.exports = {
   customToJSON: function () {
     return _.omit(this, ['password', 'createdAt', 'updatedAt']);
   },
-  customMessages: {
-    // Custom error messages
-    email: {
-      required: 'Email is required',
-      isEmail: 'Invalid email format',
-      maxLength: 'Email must not exceed 8 characters',
-    },
-    name: {
-      required: 'Name is required',
-      minLength: 'Name must be at least 8 characters long',
-    },
-    password: {
-      required: 'Password is required',
-      minLength: 'Password must be at least 8 characters long',
-    },
-  },
+  
 };
