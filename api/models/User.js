@@ -13,30 +13,42 @@ module.exports = {
       required: true,
     },
     email: {
-      type: 'string',
+      type: "string",
       required: true,
       isEmail: true,
-      minLength: 5,
-      example: 'example@example.com',
+      unique: true,
+      custom: function (value) {
+        if (!value || typeof value !== "string" || value.length > 8) {
+          throw new Error("Invalid email format");
+        }
+      },
     },
+
     name: {
-      type: 'string',
+      type: "string",
       required: true,
-      minLength: 2,
-      example: 'John Doe',
+      custom: function (value) {
+        if (!value || typeof value !== "string") {
+          throw new Error("Invalid name format");
+        }
+      },
     },
     password: {
-      type: 'string',
+      type: "string",
       required: true,
-      minLength: 8,
-      example: 'password123',
+      custom: function (value) {
+        if (!value || typeof value !== "string" || value.length <= 8) {
+          throw new Error("Password should be at least 8 characters long");
+        }
+      },
     },
+
     wallet: {
-      collection: 'wallet',
-      via: 'user'
-    }
+      collection: "wallet",
+      via: "user",
+    },
   },
   customToJSON: function () {
-    return _.omit(this, ['password', 'createdAt', 'updatedAt']);
-  }
+    return _.omit(this, ["password", "createdAt", "updatedAt"]);
+  },
 };
