@@ -13,6 +13,8 @@ module.exports.routes = {
   "POST /register": "user/register",
   "POST /login": "user/login",
   "POST /refresh": "user/refresh",
+  "POST /forgot": "password/forgot",
+  "POST /reset": "password/reset",
   // USER UPDATE
   "GET /user": "user/view",
   "GET /user/wallet": "wallet/view",

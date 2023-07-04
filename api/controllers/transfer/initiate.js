@@ -27,6 +27,8 @@ module.exports = {
 
   fn: async function (inputs) {
 
+    const newEmail = inputs.email.toLowerCase()
+
     try {
       let senderWallet = await Wallet.findOne({ user: this.req.profile.data.id });
     
@@ -34,7 +36,7 @@ module.exports = {
         return this.res.status(400).json({message: 'Sender wallet not found'});
       }
   
-      let recipient = await User.findOne({ email: inputs.email })
+      let recipient = await User.findOne({ email: newEmail })
       
       if (!recipient) {
         return this.res.status(400).json({message: 'Recipient wallet not found'});

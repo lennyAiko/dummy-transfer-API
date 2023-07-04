@@ -21,6 +21,7 @@ module.exports.policies = {
   'user/login': ['canLogin', 'paths'],
   'user/refresh': 'paths',
   'user/register': 'paths',
+  'password/*': 'paths',
   '*': ['paths', 'isAuthenticated', 'checkIssuer']
 
 };

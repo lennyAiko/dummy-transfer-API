@@ -25,12 +25,7 @@ module.exports = {
       type: "string",
       required: true,
       isEmail: true,
-      unique: true,
-      custom: function (value) {
-        if (!value || typeof value !== "string" || value.length > 8) {
-          throw new Error("Invalid email format");
-        }
-      },
+      unique: true
     },
     toExpire: {
       type: "string",

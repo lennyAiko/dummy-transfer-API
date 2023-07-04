@@ -10,43 +10,26 @@ module.exports = {
     id: {
       type: "string",
       unique: true,
-      required: true,
+      required: true
     },
     email: {
       type: "string",
       required: true,
       isEmail: true,
-      unique: true,
-      custom: function (value) {
-        if (!value || typeof value !== "string" || value.length > 8) {
-          throw new Error("Invalid email format");
-        }
-      },
+      unique: true
     },
-
     name: {
       type: "string",
-      required: true,
-      custom: function (value) {
-        if (!value || typeof value !== "string") {
-          throw new Error("Invalid name format");
-        }
-      },
+      required: true
     },
     password: {
       type: "string",
-      required: true,
-      custom: function (value) {
-        if (!value || typeof value !== "string" || value.length <= 8) {
-          throw new Error("Password should be at least 8 characters long");
-        }
-      },
+      required: true
     },
-
     wallet: {
       collection: "wallet",
-      via: "user",
-    },
+      via: "user"
+    }
   },
   customToJSON: function () {
     return _.omit(this, ["password", "createdAt", "updatedAt"]);
