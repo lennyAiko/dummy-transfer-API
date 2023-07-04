@@ -20,4 +20,6 @@ module.exports.routes = {
   "POST /transfer": "transfer/initiate",
   //ADD MONEY
   "POST /add_money": "add/initiate",
+  //TRANSACTION HISTORY
+  "GET /transactions": "transactions/history",
 };

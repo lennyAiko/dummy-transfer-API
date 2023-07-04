@@ -1,34 +1,24 @@
-/**
- * Wallet.js
- *
- * @description :: A model definition represents a database table/collection.
- * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
- */
-
 module.exports = {
-
   attributes: {
-
     id: {
-      type: 'string',
+      type: "string",
       required: true,
-      unique: true
+      unique: true,
     },
-
     balance: {
-      type: 'number',
-      defaultsTo: 0
+      type: "number",
+      defaultsTo: 0,
     },
-
     user: {
-      model: 'user',
-      unique: true
-    }
-
+      model: "user",
+      unique: true,
+    },
+    transactions: {
+      collection: "transaction",
+      via: "wallet",
+    },
   },
   customToJSON: function () {
-    return _.omit(this, ['createdAt', 'updatedAt', 'user']);
+    return _.omit(this, ["createdAt", "updatedAt", "user"]);
   },
-
 };
-
