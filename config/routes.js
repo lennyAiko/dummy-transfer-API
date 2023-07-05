@@ -15,13 +15,13 @@ module.exports.routes = {
   "POST /refresh": "user/refresh",
   "POST /forgot": "password/forgot",
   "POST /reset": "password/reset",
-  // USER UPDATE
+  // USER
   "GET /user": "user/view",
   "GET /user/wallet": "wallet/view",
   // TRANSFER
-  "POST /transfer": "transfer/initiate",
+  "POST /transfer": "wallet/transfer",
   //ADD MONEY
-  "POST /add_money": "wallet/initiate",
+  "POST /add_money": "wallet/add",
   //TRANSACTION HISTORY
-  "GET /transactions": "transactions/history",
+  "GET /transactions": "wallet/history",
 };

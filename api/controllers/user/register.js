@@ -1,11 +1,3 @@
-const bcrypt = require("bcrypt");
-
-async function hashPassword(password) {
-  const saltRounds = 10;
-  const hashedPassword = await bcrypt.hash(password, saltRounds);
-  return hashedPassword;
-}
-
 module.exports = {
   friendlyName: "Register",
   description: "Register user.",
@@ -42,7 +34,7 @@ module.exports = {
     try {
       const { name, email, password } = inputs;
       const newEmail = email.toLowerCase();
-      const hashedPassword = await hashPassword(password);
+      const hashedPassword = await sails.helpers.hashPassword(password);
       const newUser = {
         id: await sails.helpers.uuidGenerator(), // Generate a UUID for the user
         name,
@@ -50,7 +42,7 @@ module.exports = {
         password: hashedPassword,
       };
       const user = await User.create(newUser).fetch();
-      await Wallet.create({ id:await sails.helpers.uuidGenerator(), user: user.id });
+      await Wallet.create({ id: await sails.helpers.uuidGenerator(), user: user.id });
       return exits.success(user);
     } catch (error) {
       return exits.serverError(error);

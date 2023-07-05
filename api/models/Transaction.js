@@ -18,14 +18,14 @@ module.exports = {
       required: true,
     },
 
-    description: {
-      type: "string",
-      maxLength: 250,
+    user: {
+      model: "user",
     },
 
-    wallet: {
-      model: "wallet",
-    },
+    description: {
+      type: 'string',
+      required: true
+    }
   },
   customToJSON: function () {
     return _.omit(this, ["createdAt", "updatedAt", "user"]);

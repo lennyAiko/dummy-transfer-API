@@ -29,6 +29,10 @@ module.exports = {
     wallet: {
       collection: "wallet",
       via: "user"
+    },
+    transaction: {
+      collection: "Transaction",
+      via: "user"
     }
   },
   customToJSON: function () {

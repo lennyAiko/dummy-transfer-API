@@ -1,11 +1,3 @@
-const bcrypt = require("bcrypt");
-
-async function hashPassword(password) {
-  const saltRounds = 10;
-  const hashedPassword = await bcrypt.hash(password, saltRounds);
-  return hashedPassword;
-}
-
 module.exports = {
 
 
@@ -68,7 +60,7 @@ module.exports = {
       if (!await bcrypt.compare(inputs.password, userRecord.password)) {
         
         await User.updateOne({ email: verified.email })
-        .set({ password: await hashPassword(inputs.password) })
+        .set({ password: await sails.helpers.hashPassword(inputs.password) })
   
         return exits.success({message: "Password changed successfully"});
       } else { return exits.badCombo('Invalid password'); }

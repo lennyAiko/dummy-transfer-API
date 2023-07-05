@@ -55,6 +55,18 @@ module.exports = {
       await Promise.all([
         Wallet.updateOne({ id: senderWallet.id }).set(senderWallet),
         Wallet.updateOne({ id: recipientWallet.id }).set(recipientWallet),
+        Transaction.create({
+          id: await sails.helpers.uuidGenerator(),
+          user: this.req.profile.data.email,
+          amount: inputs.amount,
+          description: `You sent ${inputs.amount} to ${newEmail}`
+        }),
+        Transaction.create({
+          id: await sails.helpers.uuidGenerator(),
+          user: newEmail,
+          amount: inputs.amount,
+          description: `You received ${inputs.amount} from ${this.req.profile.data.email}`
+        })
       ]);
   
       return this.res.status(200).send('Funds transferred successfully');

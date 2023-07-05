@@ -19,7 +19,7 @@ module.exports = {
 
   fn: async function (inputs) {
 
-    return this.req.profile
+    return this.req.profile.data
 
   }
 
