@@ -10,18 +10,18 @@
 
 module.exports.routes = {
   // AUTH
-  "POST /register": "user/register",
-  "POST /login": "user/login",
-  "POST /refresh": "user/refresh",
-  "POST /forgot": "password/forgot",
-  "POST /reset": "password/reset",
+  "POST /v1/register": "user/register",
+  "POST /v1/login": "user/login",
+  "POST /v1/refresh": "user/refresh",
+  "POST /v1/forgot": "password/forgot",
+  "POST /v1/reset": "password/reset",
   // USER
-  "GET /user": "user/view",
-  "GET /user/wallet": "wallet/view",
+  "GET /v1/user": "user/view",
+  "GET /v1/user/wallet": "wallet/view",
   // TRANSFER
-  "POST /transfer": "wallet/transfer",
+  "POST /v1/transfer": "wallet/transfer",
   //ADD MONEY
-  "POST /add_money": "wallet/add",
+  "POST /v1/add_money": "wallet/add",
   //TRANSACTION HISTORY
-  "GET /transactions": "wallet/history",
+  "GET /v1/transactions": "wallet/history",
 };
